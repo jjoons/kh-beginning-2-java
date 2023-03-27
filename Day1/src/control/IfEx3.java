@@ -44,18 +44,23 @@ public class IfEx3 {
 		//    다르면 "아이디가 다릅니다"
 		// 2. 비밀번호 비교 시 일치하면 "로그인 성공"
 		//       아니라면 "아이디 또는 비밀번호를 확인"
+		// 논리연산자
 
-		if (id == nowID) {
-			System.out.println("아이디는 맞습니다");
+		if (id == nowID && pw == nowPw) {
 
-			if (pw == nowPw) {
-				System.out.println("로그인 성공");
-			} else {
-				System.out.println("아이디 또는 비밀번호를 확인");
-			}
-		} else {
-			System.out.println("아이디가 다릅니다");
 		}
+
+		//		if (id == nowID) {
+		//			System.out.println("아이디는 맞습니다");
+		//
+		//			if (pw == nowPw) {
+		//				System.out.println("로그인 성공");
+		//			} else {
+		//				System.out.println("아이디 또는 비밀번호를 확인");
+		//			}
+		//		} else {
+		//			System.out.println("아이디가 다릅니다");
+		//		}
 
 		//		if (id != nowID) {
 		//			System.out.println("아이디가 다릅니다");
