@@ -77,3 +77,15 @@ public class Main {
 		return arr;
 	}
 }
+
+/*
+ * 변수
+ *   레퍼런스(reference) 변수(참조)
+ *     - 객체를 가르키는 변수
+ *     - 특정 객체를 간접적으로 가르키는 변수
+ *   
+ *   기본형(primitive types)
+ *     특정 값을 직접 저장
+ *   
+ *   
+ */

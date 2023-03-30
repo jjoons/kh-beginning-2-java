@@ -37,6 +37,9 @@ class User {
 	}
 
 	public void login(String id, String password) {
+		if (this.id != id || this.pw != password) {
+			System.out.println("아이디나 비밀번호가 틀립니다");
+		}
 
 	}
 }
@@ -102,6 +105,11 @@ public class ClassEx04Problem {
 					break;
 
 				case 3:
+					break;
+
+				case 4:
+					System.out.println("로그아웃합니다");
+					user = null;
 					break;
 
 				case 0:
