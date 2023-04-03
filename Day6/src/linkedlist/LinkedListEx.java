@@ -20,7 +20,6 @@ public class LinkedListEx {
     // 인덱스             인덱스 X
     // 추가, 삭제 불편    추가, 삭제 편하다
 
-
     /*
      * LinkedList
      *   열차처럼 하나씩 묶어있음
