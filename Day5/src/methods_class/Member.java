@@ -20,7 +20,7 @@ public class Member {
 	// 필수는 아니지만 암묵적으로 사용함
 	public static void moviePrint(Movie movie) {
 		System.out.println("영화 제목: " + movie.movieName);
-		System.out.println("영화 시간: " + movie.movieTime);
+		System.out.println("영화 시간: " + movie.movieTime); 
 	}
 
 	public static void main(String[] args) {
