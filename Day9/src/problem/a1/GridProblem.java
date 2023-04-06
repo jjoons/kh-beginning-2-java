@@ -22,12 +22,16 @@ class MyGridProblem extends JFrame {
     this.gd = ge.getDefaultScreenDevice();
     this.displayMode = gd.getDisplayMode();
 
+    // setLayout(행, 열, 좌우여백, 위아래여백);
     this.gridLayout = new GridLayout(this.count, this.count);
     this.panel.setLayout(gridLayout);
 
     for (int i = 1; i <= count * count; i++) {
       buttons.add(new JButton(i + ""));
       this.panel.add(buttons.get(i - 1));
+//      buttons.get(i).addActionListener(e -> {
+//        JButton btn = (JButton) e.getSource();
+//      });
     }
 
     this.add(panel);
