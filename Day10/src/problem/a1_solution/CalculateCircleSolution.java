@@ -1,4 +1,4 @@
-package a1_solution;
+package problem.a1_solution;
 
 import javax.swing.*;
 import java.awt.*;
