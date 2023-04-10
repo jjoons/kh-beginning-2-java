@@ -15,10 +15,28 @@ public class SuperMarioMainSolution {
     Thread prinThread = new Thread(prin);
     Thread kinoThread = new Thread(kino);
 
+    // 쿠파 체력이 0 이하여서 죽었다
+    // 하지만 마리오랑 마리지, 피치공주는 계속 공격을 하고 있다
+    // 각각 무한 반복하는 위의 주인공들을 setDaemon() 메소드를 이용해서
+    // main 함수가 종료되면 나머지 주인공들도 종료될 수 있도록 설정하는 문제
+    marioThread.setDaemon(true);
+    marigeeThread.setDaemon(true);
+    prinThread.setDaemon(true);
+    kinoThread.setDaemon(true);
+
     // 멀티 실행 (배열 Thread, char)
     marioThread.start();
     marigeeThread.start();
     prinThread.start();
     kinoThread.start();
+
+    while (Coopa.hp > 0) {
+      try {
+        System.out.println("쿠파 남은 체력: " + Coopa.hp);
+        Thread.sleep(200);
+      } catch (InterruptedException e) {
+        e.printStackTrace();
+      }
+    }
   }
 }
