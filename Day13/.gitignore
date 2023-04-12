@@ -6,6 +6,7 @@ object.bin
 scorelist.txt
 problem_a1_result/**
 !problem_a1_result/.gitkeep
+accountlist.dat
 
 # Created by https://www.toptal.com/developers/gitignore/api/java,eclipse,intellij
 # Edit at https://www.toptal.com/developers/gitignore?templates=java,eclipse,intellij
