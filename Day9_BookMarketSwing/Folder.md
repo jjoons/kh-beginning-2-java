@@ -1,0 +1,10 @@
+images/
+1.png
+2.png
+...
+10.png
+ISBN1234.jpg
+ISBN1235.jpg
+ISBN1236.jpg
+shop.png
+user.png
