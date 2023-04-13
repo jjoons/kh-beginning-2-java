@@ -99,12 +99,38 @@ public class ArrayPractice {
   }
 
   public void practice8() {
-    // TODO
+    Scanner sc = new Scanner(System.in);
+    OneParameterFunction<Integer, Boolean> isOdd = v -> v >= 3 && v % 2 == 1;
+    int in;
+
+    while (true) {
+      System.out.println("정수: ");
+      in = sc.nextInt();
+
+      if (isOdd.run(in)) break;
+      else System.out.println("다시 입력하세요.");
+    }
+
+    int middleNumber = in / 2 + 1;
+    int[] arr = new int[in];
+    int idx;
+
+    for (idx = 0; idx < middleNumber; idx++) {
+      arr[idx] = idx + 1;
+    }
+
+    for (int i = middleNumber - 1; idx < arr.length; idx++, i--) {
+      arr[idx] = i;
+    }
+
+    for (int i = 0; i < arr.length; i++) {
+      System.out.print(arr[i] + (i < arr.length - 1 ? ", " : ""));
+    }
   }
 
   public void practice9() {
     Scanner sc = new Scanner(System.in);
-    String[] arr = new String[] {"양념", "불닭", "마늘", "옛날"};
+    String[] arr = new String[]{"양념", "불닭", "마늘", "옛날"};
     boolean notFound = true;
 
     System.out.println("치킨 이름을 입력하세요");
@@ -204,6 +230,41 @@ public class ArrayPractice {
   }
 
   public void practice16() {
-    // TODO
+    Scanner sc = new Scanner(System.in);
+
+    System.out.println("배열의 크기를 입력하세요: ");
+    int in = sc.nextInt();
+    sc.nextLine(); // 개행 제거
+
+    String[] arr = new String[in];
+    int index = 0;
+
+    while (true) {
+      for (; index < arr.length; index++) {
+        System.out.println((index + 1) + "번째 문자열: ");
+        String inputString = sc.nextLine();
+        arr[index] = inputString;
+      }
+
+      System.out.println("더 값을 입력하시겠습니까?(Y/N): ");
+      String select = sc.next();
+
+      if (select.equalsIgnoreCase("y")) {
+        System.out.println("더 입력하고 싶은 개수: ");
+        int addCount = sc.nextInt();
+        sc.nextLine();
+
+        String[] temp = arr;
+        String[] newArray = new String[temp.length + addCount];
+        System.arraycopy(temp, 0, newArray, 0, temp.length);
+
+        arr = newArray;
+        temp = null;
+      } else if (select.equalsIgnoreCase("n")) {
+        break;
+      }
+    }
+
+    System.out.println(Arrays.toString(arr));
   }
 }
