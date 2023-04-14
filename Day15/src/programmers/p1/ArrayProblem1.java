@@ -18,7 +18,7 @@ public class ArrayProblem1 {
     int temp = -1;
 
     for (int i = 0; i < arr.length; i++) {
-      if (temp != arr[i]) {
+      if (temp != arr[i] && arr[i] >= 0 && arr[i] <= 9) {
         arrList.add(arr[i]);
       }
 
@@ -40,16 +40,17 @@ public class ArrayProblem1 {
     ArrayProblem1 ap = new ArrayProblem1();
     Random r = new Random();
     int randomValue = r.nextInt(3) + 4;
-    //    int[] answer = new int[] {1, 1, 3, 3, 0, 1, 1};
+    int[] answer = new int[] {1, 1, 3, 3, 0, 1, 1};
     // answer = new int[] {4, 4, 4, 3, 3};
     // answer = new int[] {1, 1, 5, 3, 3, 3, 3, 3, 6, 7, 7};
-    int[] answer = new int[randomValue];
+    answer = new int[] {-1, -1, -1, 3, 3, 4, 1, 10, 10, 15, 2, 2, 10};
+    //    int[] answer = new int[randomValue];
 
     System.out.println(Arrays.toString(answer));
 
-    for (int i = 0; i < answer.length; i++) {
-      answer[i] = r.nextInt(10);
-    }
+    //    for (int i = 0; i < answer.length; i++) {
+    //      answer[i] = r.nextInt(10);
+    //    }
 
     System.out.println(Arrays.toString(answer));
 
