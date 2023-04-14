@@ -4,6 +4,7 @@ import java.util.Arrays;
 import java.util.LinkedHashSet;
 import java.util.Random;
 import java.util.Scanner;
+import java.util.TreeSet;
 
 public class ArrayPractice {
   public void practice1() {
@@ -107,8 +108,10 @@ public class ArrayPractice {
       System.out.println("정수: ");
       in = sc.nextInt();
 
-      if (isOdd.run(in)) break;
-      else System.out.println("다시 입력하세요.");
+      if (isOdd.run(in))
+        break;
+      else
+        System.out.println("다시 입력하세요.");
     }
 
     int middleNumber = in / 2 + 1;
@@ -130,7 +133,7 @@ public class ArrayPractice {
 
   public void practice9() {
     Scanner sc = new Scanner(System.in);
-    String[] arr = new String[]{"양념", "불닭", "마늘", "옛날"};
+    String[] arr = new String[] {"양념", "불닭", "마늘", "옛날"};
     boolean notFound = true;
 
     System.out.println("치킨 이름을 입력하세요");
@@ -202,11 +205,25 @@ public class ArrayPractice {
   }
 
   public void practice13() {
-    // TODO
+    LinkedHashSet<Integer> arr = new LinkedHashSet<>();
+    Random r = new Random();
+
+    while (true) {
+      arr.add(r.nextInt(10) + 1);
+
+      if (arr.size() >= 10)
+        break;
+    }
+
+    for (int integer : arr) {
+      System.out.print(integer + " ");
+    }
   }
 
   public void practice14() {
     // TODO
+    TreeSet<Integer> arr = new TreeSet<>();
+    Random r = new Random();
   }
 
   public void practice15() {
