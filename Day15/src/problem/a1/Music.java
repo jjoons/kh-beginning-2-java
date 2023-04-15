@@ -1,6 +1,6 @@
 package problem.a1;
 
-public class Music {
+public class Music implements Comparable<Object> {
   private String title;
   private String singer;
 
@@ -39,12 +39,21 @@ public class Music {
 
   @Override
   public boolean equals(Object obj) {
-    return super.equals(obj);
+    if (this == obj) return true;
+    else if (obj instanceof Music music) {
+      return this.getTitle().equalsIgnoreCase(music.getTitle()) &&
+        this.getSinger().equalsIgnoreCase(music.getSinger());
+    }
+
+    return false;
   }
 
+  @Override
   public int compareTo(Object o) {
-    // TODO
-    System.out.println("미구현");
+    if (o instanceof Music music) {
+      return this.getSinger().compareToIgnoreCase(music.getSinger());
+    }
+
     return 0;
   }
 }

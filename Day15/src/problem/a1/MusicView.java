@@ -44,7 +44,10 @@ public class MusicView {
         case 6 -> this.setMusic();
         case 7 -> this.ascTitle();
         case 8 -> this.descSinger();
-        case 9 -> {return;}
+        case 9 -> {
+          System.out.println("프로그램 종료");
+          return;
+        }
         case 10 -> this.addPreloadList();
         default -> System.out.println("1~9번 중 하나를 입력해주세요");
       }
@@ -65,7 +68,7 @@ public class MusicView {
   }
 
   public void addAtZero() {
-    // TODO
+    System.out.println("****** 마지막 위치에 곡 추가 ******");
     System.out.println("곡 명 입력: ");
     String songName = sc.nextLine();
 
@@ -78,16 +81,18 @@ public class MusicView {
   }
 
   public void printAll() {
-    System.out.println((ArrayList<Music>) mc.printAll());
+    System.out.println("****** 전체 곡 목록 출력 ******");
+    System.out.println(mc.printAll());
   }
 
   public void searchMusic() {
+    System.out.println("****** 특정 곡 검색 ******");
     System.out.println("검색할 곡 이름 입력: ");
     String searchMusicName = sc.nextLine();
 
     Music result = mc.searchMusic(searchMusicName);
 
-    if (result instanceof Music) {
+    if (result != null) {
       System.out.println(result);
     } else {
       System.out.println("검색한 곡이 없습니다.");
@@ -95,12 +100,13 @@ public class MusicView {
   }
 
   public void removeMusic() {
+    System.out.println("****** 특정 곡 삭제 ******");
     System.out.println("삭제할 곡 이름 입력: ");
     String deleteSongName = sc.nextLine();
 
     Music result = mc.removeMusic(deleteSongName);
 
-    if (result instanceof Music) {
+    if (result != null) {
       System.out.println(result.getSinger() + "의 " + result.getTitle() + " 곡을 삭제했습니다");
     } else {
       System.out.println("삭제할 곡이 없습니다");
@@ -108,12 +114,13 @@ public class MusicView {
   }
 
   public void setMusic() {
+    System.out.println("****** 특정 곡 수정 ******");
     System.out.println("수정할 곡 이름 입력: ");
     String searchSongName = sc.nextLine();
 
     Music searchResult = mc.searchMusic(searchSongName);
 
-    if (!(searchResult instanceof Music)) {
+    if (searchResult == null) {
       System.out.println("수정할 곡이 없습니다");
       return;
     }
@@ -127,7 +134,7 @@ public class MusicView {
     Music newMusic = new Music(newSongName, newSinger);
     Music result = mc.setMusic(searchSongName, newMusic);
 
-    if (result instanceof Music) {
+    if (result != null) {
       System.out.println(result.getSinger() + "의 " + result.getTitle() + " 곡의 값이 변경되었습니다");
     } else {
       System.out.println("값이 없습니다");
@@ -135,10 +142,7 @@ public class MusicView {
   }
 
   public void ascTitle() {
-    // TODO
-    System.out.println("미구현");
-//    System.out.println("정렬 성공");
-//    System.out.println("정렬 실패");
+    System.out.println(mc.ascTitle() == 1 ? "정렬 성공" : "정렬 실패");
   }
 
   public void descSinger() {
@@ -148,8 +152,11 @@ public class MusicView {
   public void addPreloadList() {
     Music[] musics = new Music[]{
       new Music("작은 것들을 위한 시", "방탄소년단"),
+      new Music("Alone", "Marshmello(마시멜로)"),
       new Music("소우주", "방탄소년단"),
-      new Music("주저하는 연인들을 위해", "잔나비")
+      new Music("주저하는 연인들을 위해", "잔나비"),
+      new Music("Alone", "하이라이트(Highlight)"),
+      new Music("All Mine", "f(x)")
     };
 
     mc.addListMultiple(musics);

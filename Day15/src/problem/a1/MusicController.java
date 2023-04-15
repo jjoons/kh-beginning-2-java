@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MusicController {
-  List<Music> list = new ArrayList<>();
+  private final List<Music> list = new ArrayList<>();
 
   public int addList(Music music) {
     list.add(music);
@@ -28,7 +28,7 @@ public class MusicController {
     return 1;
   }
 
-  public List printAll() {
+  public List<Music> printAll() {
     return this.list;
   }
 
@@ -54,33 +54,39 @@ public class MusicController {
   }
 
   public Music setMusic(String title, Music music) {
-    music.setTitle(title);
+    for (int i = 0; i < this.list.size(); i++) {
+      Music currentMusic = this.list.get(i);
+
+      if (title.equalsIgnoreCase(currentMusic.getTitle())) {
+        this.list.set(i, music);
+        return currentMusic;
+      }
+    }
+
     return music;
   }
 
   public int ascTitle() {
-    // TODO
-    System.out.println("미구현");
-
-    String tempTitle = "";
-    String tempSinger = "";
-
-
-    //"".compareToIgnoreCase();
-
+    this.list.sort(new AscTitle());
     return 1;
   }
 
   public int descSinger() {
-    // TODO
-    // System.out.println("미구현");
+    Music[] musics = this.list.toArray(new Music[0]);
 
-    list.sort((o1, o2) -> o1.getSinger().compareToIgnoreCase(o2.getSinger()));
+    for (int i = 0; i < musics.length; i++) {
+      for (int j = 1; j < musics.length - i; j++) {
+        if (musics[j - 1].compareTo(musics[j]) <= -1) {
+          Music temp = musics[j - 1];
+          musics[j - 1] = musics[j];
+          musics[j] = temp;
+        }
+      }
+    }
+
+    list.clear();
+    list.addAll(List.of(musics));
 
     return 1;
-  }
-
-  public void removeDuplicate() {
-
   }
 }
