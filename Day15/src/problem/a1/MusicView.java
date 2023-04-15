@@ -55,7 +55,7 @@ public class MusicView {
   }
 
   public void addList() {
-    // TODO
+    System.out.println("****** 마지막 위치에 곡 추가 ******");
     System.out.println("곡 명 입력: ");
     String songName = sc.nextLine();
 
@@ -68,7 +68,7 @@ public class MusicView {
   }
 
   public void addAtZero() {
-    System.out.println("****** 마지막 위치에 곡 추가 ******");
+    System.out.println("****** 첫 위치에 곡 추가 ******");
     System.out.println("곡 명 입력: ");
     String songName = sc.nextLine();
 
