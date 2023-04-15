@@ -7,7 +7,6 @@ public class MusicController {
   List<Music> list = new ArrayList<>();
 
   public int addList(Music music) {
-
     list.add(music);
     return 1;
   }
@@ -18,15 +17,15 @@ public class MusicController {
     }
   }
 
+  public void addListMultiple(List<Music> musics) {
+    for (Music music : musics) {
+      this.addList(music);
+    }
+  }
+
   public int addAtZero(Music music) {
     list.add(0, music);
     return 1;
-  }
-
-  public void addAtZeroMultiple(Music[] musics) {
-    for (Music music : musics) {
-      this.addAtZero(music);
-    }
   }
 
   public List printAll() {
