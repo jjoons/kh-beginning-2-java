@@ -1,5 +1,6 @@
 
 import java.util.HashMap;
+import java.util.TreeMap;
 
 public class MapMain {
   public static void main(String[] args) {
@@ -72,7 +73,14 @@ public class MapMain {
       }
 
       // TreeMap
+      TreeMap<String, String> list2 = new TreeMap<>();
 
+      list2.put("이서희", "010-1234-1234");
+      list2.put("김다다", "010-3455-1235");
+      list2.put("하하", "010-3546-1236");
+      list2.put("유재석", "010-4652-1237");
+
+      System.out.println(list2);
     }
   }
 }
