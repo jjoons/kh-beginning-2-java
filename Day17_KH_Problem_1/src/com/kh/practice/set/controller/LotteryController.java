@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Random;
 import java.util.TreeSet;
-import java.util.function.Predicate;
 import com.kh.practice.set.model.compare.SortedLottery;
 import com.kh.practice.set.model.vo.Lottery;
 
@@ -34,30 +33,34 @@ public class LotteryController {
       return null;
 
     ArrayList<Lottery> aList = new ArrayList<>(this.lottery);
-    int size = aList.size();
+    ArrayList<Lottery> bList = new ArrayList<>(this.win);
 
-    int[] ia = {0};
-    for (; ia[0] < winCount; ia[0]++) {
-      int randomValue = this.random.nextInt(size);
-      Lottery l1 = aList.get(randomValue);
+    for (int i = 0; i < aList.size(); i++) {
+      Lottery l1 = aList.get(i);
 
-      aList.removeIf((Predicate<Lottery>) t -> {
-        boolean result = t.equals(l1);
+      for (int j = 0; j < bList.size(); j++) {
+        Lottery l2 = bList.get(j);
 
-        if (result)
-          ia[0]--;
+        if (!aList.contains(l2)) {
+          bList.remove(j);
+        }
+      }
+    }
 
-        return result;
-      });
-
-      this.win.add(aList.get(randomValue));
+    while (this.win.size() < 4) {
+      int randomValue = this.random.nextInt(this.lottery.size());
+      Lottery lot = aList.get(randomValue);
+      this.win.add(lot);
     }
 
     return this.win;
   }
 
   public TreeSet<Lottery> sortedWinObject() {
-    TreeSet<Lottery> sortedSet = new TreeSet<>(new SortedLottery<Object>());
+    // TODO
+    // Comparator로 서로 간의 값을 비교하는데 서로 간의 값이 같음
+
+    TreeSet<Lottery> sortedSet = new TreeSet<>(new SortedLottery<>());
     sortedSet.addAll(this.win);
 
     return sortedSet;

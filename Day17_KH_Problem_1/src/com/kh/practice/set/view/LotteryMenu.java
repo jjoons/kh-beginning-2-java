@@ -19,6 +19,7 @@ public class LotteryMenu {
           3. 당첨 대상 확인
           4. 정렬된 당첨 대상 확인
           5. 당첨 대상 검색
+          6. 등록된 추첨 대상 추가
           9. 종료
           """);
       System.out.println("메뉴 번호 선택: ");
@@ -37,6 +38,14 @@ public class LotteryMenu {
         case 3 -> this.winObject();
         case 4 -> this.sortedWinObject();
         case 5 -> this.searchWinner();
+        case 6 -> {
+          this.lc.insertObject(new Lottery("박신우", "01011112222"));
+          this.lc.insertObject(new Lottery("송성실", "01022223333"));
+          this.lc.insertObject(new Lottery("문미미", "01033334444"));
+          this.lc.insertObject(new Lottery("강건강", "01044445555"));
+          this.lc.insertObject(new Lottery("윤예의", "01055556666"));
+          this.lc.insertObject(new Lottery("류라라", "01066667777"));
+        }
         case 9 -> {
           System.out.println("프로그램 종료.");
           return;
@@ -48,6 +57,7 @@ public class LotteryMenu {
 
   public void insertObject() {
     int count = -1;
+
     try {
       System.out.println("추가할 추첨 대상 수: ");
       count = this.sc.nextInt();
@@ -57,7 +67,7 @@ public class LotteryMenu {
       this.sc.nextLine();
     }
 
-    for (int i = 1; i <= count; i++) {
+    for (int i = 0; i < count; i++) {
       System.out.println("이름: ");
       String name = this.sc.nextLine();
 
@@ -67,13 +77,11 @@ public class LotteryMenu {
 
       Lottery newLottery = new Lottery(name, phone);
 
-      if (this.lc.insertObject(newLottery)) {
-        System.out.println(count + "명 추가 완료되었습니다");
-        break;
-      } else {
+      if (!this.lc.insertObject(newLottery))
         System.out.println("중복된 대상입니다. 다시 입력하세요.");
-      }
     }
+
+    System.out.println(count + "명 추가 완료되었습니다");
   }
 
   public void deleteObject() {
@@ -131,3 +139,4 @@ public class LotteryMenu {
     }
   }
 }
+
