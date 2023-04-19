@@ -1,11 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="ChangeListManager">
-    <list default="true" id="0d82e3d5-33f5-4445-95a9-46e08d02b20e" name="Changes" comment="" />
+    <list default="true" id="24e393a3-7e48-4969-9a7b-367b9326c2d3" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Day18_KH_Problem_1.iml" beforeDir="false" afterPath="$PROJECT_DIR$/Day18_KH_Problem_1.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/kh/practice/book/controller/BookController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/kh/practice/book/controller/BookController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/kh/practice/book/model/dao/BookDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/kh/practice/book/model/dao/BookDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/kh/practice/book/model/vo/Book.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/kh/practice/book/model/vo/Book.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/kh/practice/book/view/BookMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/kh/practice/book/view/BookMenu.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FormatOnSaveOptions">
+    <option name="myRunOnSave" value="true" />
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
@@ -13,26 +29,34 @@
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
-  <component name="ProjectId" id="2Od2S2DJwjGNliCVPJdnxoJ9YIU" />
+  <component name="OptimizeOnSaveOptions">
+    <option name="myRunOnSave" value="true" />
+  </component>
+  <component name="ProjectId" id="2OdPcDKa95gnYoqFLImZo5mSHeI" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
+    <option name="showModules" value="false" />
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "main"
+    "git-widget-placeholder": "main",
+    "project.structure.last.edited": "SDKs",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "actions.on.save"
   }
 }]]></component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="0d82e3d5-33f5-4445-95a9-46e08d02b20e" name="Changes" comment="" />
-      <created>1681876135862</created>
+      <changelist id="24e393a3-7e48-4969-9a7b-367b9326c2d3" name="Changes" comment="" />
+      <created>1681887565674</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1681876135862</updated>
+      <updated>1681887565674</updated>
     </task>
     <servers />
   </component>
