@@ -1,12 +1,12 @@
 package com.kh.practice.book.view;
 
+import com.kh.practice.book.controller.BookController;
+import com.kh.practice.book.model.vo.Book;
+
 import java.io.IOException;
 import java.util.Calendar;
 import java.util.InputMismatchException;
 import java.util.Scanner;
-import java.util.regex.PatternSyntaxException;
-import com.kh.practice.book.controller.BookController;
-import com.kh.practice.book.model.vo.Book;
 
 public class BookMenu {
   private Scanner sc = new Scanner(System.in);
@@ -27,7 +27,8 @@ public class BookMenu {
     } catch (ClassCastException e) {
       throw new Exception("형 변환 실패", e);
     } catch (IOException e) {
-      throw new Exception("IO Error", e);
+      e.printStackTrace();
+      throw new Exception(e.getMessage(), e);
     }
   }
 
@@ -36,10 +37,10 @@ public class BookMenu {
 
     while (loopState) {
       System.out.println("""
-          1. 도서 추가 저장
-          2. 저장 도서 출력
-          9. 프로그램 끝내기
-          """);
+        1. 도서 추가 저장
+        2. 저장 도서 출력
+        9. 프로그램 끝내기
+        """);
 
       int sel = -1;
       while (true) {
@@ -67,6 +68,11 @@ public class BookMenu {
   }
 
   public void fileSave() {
+    if (this.bc.isMaxCount()) {
+      System.out.println("보관함이 가득 차서 추가로 저장할 수 없습니다");
+      return;
+    }
+
     System.out.println("도서명: ");
     String bookName = this.sc.nextLine();
 
@@ -103,7 +109,7 @@ public class BookMenu {
 
         calendar.set(year, month, day);
         break;
-      } catch (PatternSyntaxException e) {
+      } catch (ArrayIndexOutOfBoundsException e) {
         System.out.println("\"-\"를 붙여서 입력해주세요");
       } catch (NumberFormatException e) {
         System.out.println("연월일은 숫자만 입력할 수 있습니다");
@@ -123,8 +129,7 @@ public class BookMenu {
       }
     }
 
-    Book book = new Book(bookName, authorName, bookPrice, calendar, discountRate);
-
+    this.bArr[this.bc.increaseCount() - 1] = new Book(bookName, authorName, bookPrice, calendar, discountRate);
 
     try {
       this.bc.fileSave(bArr);
@@ -134,6 +139,25 @@ public class BookMenu {
   }
 
   public void fileRead() {
+    Book[] books;
 
+    try {
+      books = this.bc.fileRead();
+    } catch (ClassNotFoundException e) {
+      System.out.println("클래스를 찾을 수 없습니다");
+      return;
+    } catch (IOException e) {
+      System.out.println("IO 오류");
+      return;
+    }
+
+    for (Book book : books) {
+      if (book != null) {
+        System.out.printf("%s\t%s\t%d\t%s\t%f", book.getTitle(), book.getAuthor(), book.getPrice(),
+          book, book.getDiscount());
+      }
+    }
+
+    System.out.println();
   }
 }

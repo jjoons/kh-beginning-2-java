@@ -1,9 +1,10 @@
 package com.kh.practice.book.controller;
 
-import java.io.File;
-import java.io.IOException;
 import com.kh.practice.book.model.dao.BookDAO;
 import com.kh.practice.book.model.vo.Book;
+
+import java.io.File;
+import java.io.IOException;
 
 public class BookController {
   private BookDAO bd = new BookDAO();
@@ -19,5 +20,21 @@ public class BookController {
 
   public Book[] fileRead() throws ClassNotFoundException, ClassCastException, IOException {
     return this.bd.fileRead();
+  }
+
+  public int getCount() {
+    return this.bd.getCount();
+  }
+
+  public int increaseCount() {
+    return this.bd.increaseCount();
+  }
+
+  public int decreaseCount() {
+    return this.bd.decreaseCount();
+  }
+
+  public boolean isMaxCount() {
+    return this.bd.isMaxCount();
   }
 }

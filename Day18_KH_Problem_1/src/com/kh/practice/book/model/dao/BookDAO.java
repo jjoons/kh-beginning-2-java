@@ -1,16 +1,14 @@
 package com.kh.practice.book.model.dao;
 
-import java.io.EOFException;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
 import com.kh.practice.book.model.vo.Book;
 
+import java.io.*;
+
 public class BookDAO {
-  private Book[] bArr = new Book[10];
+  public static final int MAX_COUNT = 10;
   public static final String BOOK_FILE_PATH = "./io/book.txt";
+  private Book[] bArr = new Book[MAX_COUNT];
+  private int count;
 
   public void fileSave(Book[] bArr) throws IOException {
     FileOutputStream fos = new FileOutputStream(BOOK_FILE_PATH);
@@ -25,16 +23,29 @@ public class BookDAO {
 
   public Book[] fileRead() throws IOException, ClassNotFoundException, ClassCastException {
     FileInputStream fis = new FileInputStream(BOOK_FILE_PATH);
-    ObjectInputStream ois = new ObjectInputStream(fis);
 
-    try {
+    try (ObjectInputStream ois = new ObjectInputStream(fis)) {
       for (int i = 0; i < bArr.length; i++) {
         this.bArr[i] = (Book) ois.readObject();
       }
     } catch (EOFException e) {}
 
-    fis.close();
-
     return this.bArr;
+  }
+
+  public int getCount() {
+    return count;
+  }
+
+  public int increaseCount() {
+    return ++this.count;
+  }
+
+  public int decreaseCount() {
+    return --this.count;
+  }
+
+  public boolean isMaxCount() {
+    return this.count >= MAX_COUNT;
   }
 }
