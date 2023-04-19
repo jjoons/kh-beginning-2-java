@@ -36,7 +36,7 @@ public class LotteryController {
     ArrayList<Lottery> bList = new ArrayList<>(this.win);
 
     for (int i = 0; i < aList.size(); i++) {
-      Lottery l1 = aList.get(i);
+      //      Lottery l1 = aList.get(i);
 
       for (int j = 0; j < bList.size(); j++) {
         Lottery l2 = bList.get(j);
@@ -47,7 +47,7 @@ public class LotteryController {
       }
     }
 
-    while (this.win.size() < 4) {
+    while (this.win.size() < winCount) {
       int randomValue = this.random.nextInt(this.lottery.size());
       Lottery lot = aList.get(randomValue);
       this.win.add(lot);

@@ -108,6 +108,7 @@ public class LotteryMenu {
   }
 
   public void sortedWinObject() {
+    this.lc.winObject();
     this.lc.sortedWinObject().forEach(v -> System.out.println(v));
 
     //    for (Lottery l : this.lc.sortedWinObject()) {
@@ -121,6 +122,8 @@ public class LotteryMenu {
   }
 
   public void searchWinner() {
+    this.lc.winObject();
+
     System.out.println("검색할 대상의 이름과 핸드폰 번호를 입력하세요.");
 
     System.out.println("이름: ");
