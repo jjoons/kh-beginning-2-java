@@ -5,11 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="24e393a3-7e48-4969-9a7b-367b9326c2d3" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Day18_KH_Problem_1.iml" beforeDir="false" afterPath="$PROJECT_DIR$/Day18_KH_Problem_1.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/kh/practice/book/controller/BookController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/kh/practice/book/controller/BookController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/kh/practice/book/model/dao/BookDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/kh/practice/book/model/dao/BookDAO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/kh/practice/book/model/vo/Book.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/kh/practice/book/model/vo/Book.java" afterDir="false" />
