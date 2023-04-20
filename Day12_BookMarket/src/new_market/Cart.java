@@ -12,7 +12,7 @@ public class Cart implements CartInterface {
   @Override
   public void printBookList(Book[] bookList) {
     for (Book book : bookList) {
-      System.out.printf("");
+      System.out.println(book);
     }
   }
 
@@ -22,12 +22,14 @@ public class Cart implements CartInterface {
   }
 
   @Override
-  public void insertBook(Book p) {}
+  public void insertBook(Book p) {
+    this.mCartItem[mCartCount++] = new CartItem(p, 1);
+  }
 
   @Override
   public void removeCart(int numId) {
     for (int i = 0; i < this.mCartItem.length; i++) {
-
+      Item item = this.mCartItem[i].getItem();
     }
   }
 

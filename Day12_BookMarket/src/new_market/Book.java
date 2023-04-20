@@ -1,20 +1,15 @@
 package new_market;
 
-public class Book implements Item {
+public class Book extends Item {
   private String bookId;
-  private String name;
-  private int unitPrice;
   private String author;
   private String description;
   private String category;
   private String releaseDate;
 
-  public Book() {}
-
-  public Book(String bookId, String name, int unitPrice, String author, String description, String category, String releaseDate) {
+  public Book(String name, int price, String bookId, String author, String description, String category, String releaseDate) {
+    super(name, price);
     this.bookId = bookId;
-    this.name = name;
-    this.unitPrice = unitPrice;
     this.author = author;
     this.description = description;
     this.category = category;
@@ -27,22 +22,6 @@ public class Book implements Item {
 
   public void setBookId(String bookId) {
     this.bookId = bookId;
-  }
-
-  public String getName() {
-    return name;
-  }
-
-  public void setName(String name) {
-    this.name = name;
-  }
-
-  public int getUnitPrice() {
-    return unitPrice;
-  }
-
-  public void setUnitPrice(int unitPrice) {
-    this.unitPrice = unitPrice;
   }
 
   public String getAuthor() {
@@ -79,6 +58,6 @@ public class Book implements Item {
 
   @Override
   public String toString() {
-    return this.bookId + " | " + this.name + " | " + this.unitPrice + " | " + this.author + " | " + this.description + " | " + this.category + " | " + this.releaseDate;
+    return this.bookId + " | " + this.name + " | " + this.price + " | " + this.author + " | " + this.description + " | " + this.category + " | " + this.releaseDate;
   }
 }

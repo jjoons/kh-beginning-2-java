@@ -1,6 +1,6 @@
 package new_market;
 
-public class Manager extends Customer {
+public class Manager extends Member {
   private String id;
   private String password;
 

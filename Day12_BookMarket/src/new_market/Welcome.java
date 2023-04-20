@@ -6,17 +6,18 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Welcome {
-  private CartItem[][] mBook;
+  private Book[] mBook = new Book[]{
+    new Book("쉽게 배우는 JSP 웹 프로그래밍", 27000, "ISBN1234", "송미영", "단계별로 쇼핑몰을 구현하며 배우는 JSP 웹 프로그래밍", "IT전문서", "2018/10/08"),
+    new Book("안드로이드 프로그래밍", 33000, "ISBN1235", "우재남", "실습 단계별 명쾌한 멘토링!", "IT전문서", "2022/01/22"),
+    new Book("스크래치", 22000, "ISBN1236", "고광일", "컴퓨팅 사고력을 키우는 블록 코딩", "컴퓨터입문서", "2019/06/10")
+  };
+  private int mBookCount = 3;
   private final Scanner sc = new Scanner(System.in);
   private final InputFromUser in = new InputFromUser(sc);
   private final Cart cart = new Cart();
 
   public static void main(String[] args) {
-    Book[] books = new Book[]{
-      new Book("ISBN1234", "쉽게 배우는 JSP 웹 프로그래밍", 27000, "송미영", "단계별로 쇼핑몰을 구현하며 배우는 JSP 웹 프로그래밍", "IT전문서", "2018/10/08"),
-      new Book("ISBN1235", "안드로이드 프로그래밍", 33000, "우재남", "실습 단계별 명쾌한 멘토링!", "IT전문서", "2022/01/22"),
-      new Book("ISBN1236", "스크래치", 22000, "고광일", "컴퓨팅 사고력을 키우는 블록 코딩", "컴퓨터입문서", "2019/06/10")
-    };
+    new Welcome().mainMenu();
   }
 
   public void mainMenu() {
@@ -25,13 +26,6 @@ public class Welcome {
 
     System.out.println("폰 번호 입력: ");
     String phoneNumber = this.sc.nextLine();
-
-
-    // 2차원 배열로 어떻게 하라는건지 모르겠음..
-    this.mBook = new CartItem[][]{
-      {new CartItem()},
-      {new CartItem(), new CartItem()}
-    };
 
     boolean loopState = true;
 
@@ -93,19 +87,42 @@ public class Welcome {
     System.out.println("장바구니 상품 목록: ");
     System.out.println("-----------------------------------");
 
-//    this.cart.printBookList();
-
     System.out.println("-----------------------------------");
   }
 
-  public void menuCartClear() {}
+  /**
+   * 장바구니 비우기
+   */
+  public void menuCartClear() {
+    this.cart.deleteBook();
+  }
 
-  public void menuCartAddItem() {}
+  /**
+   * 바구니에 항목 추가하기
+   */
+  public void menuCartAddItem() {
+    this.cart.printBookList(this.mBook);
 
+    System.out.println("장바구니에 추가할 도서의 ID를 입력하세요: ");
+    String bookId = this.sc.nextLine();
+
+
+    System.out.println();
+  }
+
+  /**
+   * 장바구니의 항목 수량 줄이기
+   */
   public void menuCartRemoveItemCount() {}
 
+  /**
+   * 장바구니의 항목 삭제하기
+   */
   public void menuCartRemoveItem() {}
 
+  /**
+   * 영수증 표시하기
+   */
   public void menuCartBill() {
     boolean printYn = false;
 
