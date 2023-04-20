@@ -1,5 +1,6 @@
+package old_1;
 
-public class Item {
+public class Old1Item {
   private String bookID;
   private String title;
   private int price;
@@ -8,7 +9,7 @@ public class Item {
   private String type;
   private String date;
 
-  public Item(String bookID, String title, int price, String author, String description,
+  public Old1Item(String bookID, String title, int price, String author, String description,
       String type, String date) {
     this.bookID = bookID;
     this.title = title;
@@ -19,7 +20,7 @@ public class Item {
     this.date = date;
   }
 
-  public Item(String[] arr) throws NumberFormatException {
+  public Old1Item(String[] arr) throws NumberFormatException {
     this.bookID = arr[0];
     this.title = arr[1];
     this.price = Integer.parseInt(arr[2]);

@@ -1,22 +1,23 @@
-public class CartItem extends Item {
+package old_1;
+public class Old1CartItem extends Old1Item {
   private int count = 1;
 
-  public CartItem(String bookID, String title, int price, String author, String description,
+  public Old1CartItem(String bookID, String title, int price, String author, String description,
       String type, String date) {
     super(bookID, title, price, author, description, type, date);
   }
 
-  public CartItem(String bookID, String title, int price, String author, String description,
+  public Old1CartItem(String bookID, String title, int price, String author, String description,
       String type, String date, int count) {
     super(bookID, title, price, author, description, type, date);
     this.count = count;
   }
 
-  public CartItem(String[] arr) throws NumberFormatException {
+  public Old1CartItem(String[] arr) throws NumberFormatException {
     super(arr);
   }
 
-  public CartItem(String[] arr, int count) throws NumberFormatException {
+  public Old1CartItem(String[] arr, int count) throws NumberFormatException {
     super(arr);
     this.count = count;
   }

@@ -1,23 +1,24 @@
+package old_1;
 import java.util.ArrayList;
 
-public class Cart {
-  private ArrayList<CartItem> itemBook = new ArrayList<>();
+public class Old1Cart {
+  private ArrayList<Old1CartItem> itemBook = new ArrayList<>();
   private int totalPrice;
 
   public void printCart() {
-    for (Item item : itemBook) {
+    for (Old1Item item : itemBook) {
       System.out.println(item);
     }
   }
 
-  public boolean addItem(CartItem item) {
+  public boolean addItem(Old1CartItem item) {
     return this.itemBook.add(item);
   }
 
-  public boolean addItems(CartItem[] items) {
+  public boolean addItems(Old1CartItem[] items) {
     boolean returnValue = true;
 
-    for (CartItem item : items) {
+    for (Old1CartItem item : items) {
       if (!this.addItem(item))
         returnValue = false;
     }
@@ -25,7 +26,7 @@ public class Cart {
     return returnValue;
   }
 
-  public Item removeItem(int index) {
+  public Old1Item removeItem(int index) {
     return this.itemBook.remove(index);
   }
 

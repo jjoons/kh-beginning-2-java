@@ -1,13 +1,14 @@
+package old_1;
 import java.util.Scanner;
 
-public class Main {
-  Person person = null;
+public class Old1Main {
+  Old1Person person = null;
   public static Scanner sc = new Scanner(System.in);
   //  ArrayList<Item> items = new ArrayList<>();
-  Cart cart = new Cart();
+  Old1Cart cart = new Old1Cart();
 
   public static void main(String[] args) {
-    Main m = new Main();
+    Old1Main m = new Old1Main();
     boolean loopState = true;
 
     while (loopState) {
@@ -67,7 +68,7 @@ public class Main {
     }
   }
 
-  public Main() {
+  public Old1Main() {
     System.out.println("당신의 이름을 입력하세요");
     String name = sc.next();
 
@@ -77,14 +78,14 @@ public class Main {
     System.out.println("주소를 입력하세요");
     String address = sc.next();
 
-    person = new Person(name, phoneNumber, address);
+    person = new Old1Person(name, phoneNumber, address);
 
-    CartItem[] initialItems = new CartItem[] {
-        new CartItem("ISBN1234", "쉽게 배우는 JSP 웹 프로그래밍", 27000, "송미영",
+    Old1CartItem[] initialItems = new Old1CartItem[] {
+        new Old1CartItem("ISBN1234", "쉽게 배우는 JSP 웹 프로그래밍", 27000, "송미영",
             "단계별로 쇼핑몰을 구현하며 배우는 JSP 웹 프로그래밍", "IT전문서", "2018/10/08"),
-        new CartItem("ISBN1235", "안드로이드 프로그래밍", 33000, "우재남", "실습 단계별 명쾌한 멘토링!", "IT전문서",
+        new Old1CartItem("ISBN1235", "안드로이드 프로그래밍", 33000, "우재남", "실습 단계별 명쾌한 멘토링!", "IT전문서",
             "2022/01/22"),
-        new CartItem("ISBN220913101957", "스크래치", 22000, "고광일", "컴퓨팅 사고력을 키우는 블록 코딩", "컴퓨터입문",
+        new Old1CartItem("ISBN220913101957", "스크래치", 22000, "고광일", "컴퓨팅 사고력을 키우는 블록 코딩", "컴퓨터입문",
             "2019/06/10")};
 
     cart.addItems(initialItems);
@@ -119,7 +120,7 @@ public class Main {
     String input = sc.nextLine();
     String[] splitResult = input.split("|");
 
-    cart.addItem(new CartItem(splitResult));
+    cart.addItem(new Old1CartItem(splitResult));
   }
 
   public void menuCartRemoveItemCount() {
