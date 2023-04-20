@@ -5,5 +5,5 @@ package baekjoon.a2;
  */
 
 public class Factorial2 {
-
+  // TODO
 }
