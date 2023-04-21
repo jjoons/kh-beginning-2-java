@@ -2,6 +2,8 @@ package inheritance_car;
 
 public class Main {
   public static void main(String[] args) {
+    //TODO
+
     // 현대자동차
     //   브랜드명
     //   차이름
