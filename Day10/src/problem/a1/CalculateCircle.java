@@ -1,8 +1,13 @@
 package problem.a1;
 
-import javax.swing.*;
-import java.awt.*;
-import java.beans.Beans;
+import java.awt.BorderLayout;
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
 
 public class CalculateCircle extends JFrame {
   public CalculateCircle() {
@@ -27,7 +32,7 @@ public class CalculateCircle extends JFrame {
     this.add(panel1);
 
     JPanel panel2 = new JPanel();
-    panel2.setBounds(30, 30,200,30);
+    panel2.setBounds(30, 30, 200, 30);
 
     JLabel textField2Label = new JLabel("원의 넓이");
     panel2.add(textField2Label);
@@ -75,6 +80,7 @@ public class CalculateCircle extends JFrame {
   }
 
   public static void main(String[] args) {
+    // TODO
     new CalculateCircle();
   }
 }

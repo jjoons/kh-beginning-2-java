@@ -72,6 +72,7 @@ class Kupa extends SuperMarioBaseInfo {
 
 public class SuperMarioMain {
   public static void main(String[] args) {
+    // TODO
     // 마리오 클래스, 마리지 클래스, 피치공주, 버섯돌이
     // 이름, 목숨, 기본 레벨 10
 
