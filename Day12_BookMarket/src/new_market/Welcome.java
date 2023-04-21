@@ -1,16 +1,16 @@
 package new_market;
 
-import util.InputFromUser;
-
 import java.util.InputMismatchException;
 import java.util.Scanner;
+import util.InputFromUser;
 
 public class Welcome {
-  private Book[] mBook = new Book[]{
-    new Book("쉽게 배우는 JSP 웹 프로그래밍", 27000, "ISBN1234", "송미영", "단계별로 쇼핑몰을 구현하며 배우는 JSP 웹 프로그래밍", "IT전문서", "2018/10/08"),
-    new Book("안드로이드 프로그래밍", 33000, "ISBN1235", "우재남", "실습 단계별 명쾌한 멘토링!", "IT전문서", "2022/01/22"),
-    new Book("스크래치", 22000, "ISBN1236", "고광일", "컴퓨팅 사고력을 키우는 블록 코딩", "컴퓨터입문서", "2019/06/10")
-  };
+  // TODO 미완
+  private Book[] mBook = new Book[] {
+      new Book("쉽게 배우는 JSP 웹 프로그래밍", 27000, "ISBN1234", "송미영", "단계별로 쇼핑몰을 구현하며 배우는 JSP 웹 프로그래밍",
+          "IT전문서", "2018/10/08"),
+      new Book("안드로이드 프로그래밍", 33000, "ISBN1235", "우재남", "실습 단계별 명쾌한 멘토링!", "IT전문서", "2022/01/22"),
+      new Book("스크래치", 22000, "ISBN1236", "고광일", "컴퓨팅 사고력을 키우는 블록 코딩", "컴퓨터입문서", "2019/06/10")};
   private int mBookCount = 3;
   private final Scanner sc = new Scanner(System.in);
   private final InputFromUser in = new InputFromUser(sc);
@@ -31,17 +31,17 @@ public class Welcome {
 
     while (loopState) {
       System.out.println("""
-        *************************************************
-                Welcome to Shopping Mall
-                Welcome to Book Market!
-        *************************************************
-         1. 고객 정보 확인하기       4. 장바구니에 항목 추가하기
-         2. 장바구니 상품 목록 보기   5. 장바구니의 항목 수량 줄이기
-         3. 장바구니 비우기          6. 장바구니의 항목 삭제하기
-         7. 영수증 표시하기          8. 종료
-         9. 관리자 로그인
-        *************************************************
-        """);
+          *************************************************
+                  Welcome to Shopping Mall
+                  Welcome to Book Market!
+          *************************************************
+           1. 고객 정보 확인하기       4. 장바구니에 항목 추가하기
+           2. 장바구니 상품 목록 보기   5. 장바구니의 항목 수량 줄이기
+           3. 장바구니 비우기          6. 장바구니의 항목 삭제하기
+           7. 영수증 표시하기          8. 종료
+           9. 관리자 로그인
+          *************************************************
+          """);
 
       Integer sel = null;
       try {
@@ -140,7 +140,8 @@ public class Welcome {
       }
     }
 
-    if (!printYn) return;
+    if (!printYn)
+      return;
 
   }
 
