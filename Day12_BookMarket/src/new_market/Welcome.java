@@ -1,20 +1,25 @@
 package new_market;
 
+import util.InputFromUser;
+
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.InputMismatchException;
 import java.util.Scanner;
-import util.InputFromUser;
 
 public class Welcome {
   // TODO 미완
-  private Book[] mBook = new Book[] {
-      new Book("쉽게 배우는 JSP 웹 프로그래밍", 27000, "ISBN1234", "송미영", "단계별로 쇼핑몰을 구현하며 배우는 JSP 웹 프로그래밍",
-          "IT전문서", "2018/10/08"),
-      new Book("안드로이드 프로그래밍", 33000, "ISBN1235", "우재남", "실습 단계별 명쾌한 멘토링!", "IT전문서", "2022/01/22"),
-      new Book("스크래치", 22000, "ISBN1236", "고광일", "컴퓨팅 사고력을 키우는 블록 코딩", "컴퓨터입문서", "2019/06/10")};
+  private Book[] mBook = new Book[]{
+    new Book("쉽게 배우는 JSP 웹 프로그래밍", 27000, "ISBN1234", "송미영", "단계별로 쇼핑몰을 구현하며 배우는 JSP 웹 프로그래밍",
+      "IT전문서", "2018/10/08"),
+    new Book("안드로이드 프로그래밍", 33000, "ISBN1235", "우재남", "실습 단계별 명쾌한 멘토링!", "IT전문서", "2022/01/22"),
+    new Book("스크래치", 22000, "ISBN1236", "고광일", "컴퓨팅 사고력을 키우는 블록 코딩", "컴퓨터입문서", "2019/06/10")};
   private int mBookCount = 3;
   private final Scanner sc = new Scanner(System.in);
   private final InputFromUser in = new InputFromUser(sc);
   private final Cart cart = new Cart();
+  private Customer customer = null;
+  private Manager manager = new Manager("관리자1", "15880000", "admin", "admin");
 
   public static void main(String[] args) {
     new Welcome().mainMenu();
@@ -27,21 +32,23 @@ public class Welcome {
     System.out.println("폰 번호 입력: ");
     String phoneNumber = this.sc.nextLine();
 
+    this.customer = new Customer(name, phoneNumber);
+
     boolean loopState = true;
 
     while (loopState) {
       System.out.println("""
-          *************************************************
-                  Welcome to Shopping Mall
-                  Welcome to Book Market!
-          *************************************************
-           1. 고객 정보 확인하기       4. 장바구니에 항목 추가하기
-           2. 장바구니 상품 목록 보기   5. 장바구니의 항목 수량 줄이기
-           3. 장바구니 비우기          6. 장바구니의 항목 삭제하기
-           7. 영수증 표시하기          8. 종료
-           9. 관리자 로그인
-          *************************************************
-          """);
+        *************************************************
+                Welcome to Shopping Mall
+                Welcome to Book Market!
+        *************************************************
+         1. 고객 정보 확인하기       4. 장바구니에 항목 추가하기
+         2. 장바구니 상품 목록 보기   5. 장바구니의 항목 수량 줄이기
+         3. 장바구니 비우기          6. 장바구니의 항목 삭제하기
+         7. 영수증 표시하기          8. 종료
+         9. 관리자 로그인
+        *************************************************
+        """);
 
       Integer sel = null;
       try {
@@ -76,25 +83,37 @@ public class Welcome {
    * 고객 정보 확인하기
    */
   public void menuGuestInfo() {
-
+    System.out.println("현재 고객 정보");
+    System.out.println(this.customer);
   }
 
   /**
    * 장바구니 상품 목록 보기
    */
   public void menuCartItemList() {
-
-    System.out.println("장바구니 상품 목록: ");
-    System.out.println("-----------------------------------");
-
-    System.out.println("-----------------------------------");
+    this.cart.printCartList();
   }
 
   /**
    * 장바구니 비우기
    */
   public void menuCartClear() {
-    this.cart.deleteBook();
+    while (true) {
+      System.out.println("장바구니의 항목을 삭제하시겠습니까? (Y / N) ");
+      String yn = this.sc.next();
+      this.sc.nextLine();
+
+      if (yn.equalsIgnoreCase("y")) {
+        System.out.println("장바구니의 모든 항목을 삭제했습니다");
+        this.cart.deleteBook();
+        break;
+      } else if (yn.equalsIgnoreCase("n")) {
+        System.out.println("장바구니 비우기를 취소했습니다");
+        break;
+      } else {
+        System.out.println("'y' 또는 'n' 중에서 하나만 입력해 주시기 바랍니다");
+      }
+    }
   }
 
   /**
@@ -118,7 +137,21 @@ public class Welcome {
   /**
    * 장바구니의 항목 삭제하기
    */
-  public void menuCartRemoveItem() {}
+  public void menuCartRemoveItem() {
+    this.cart.printCartList();
+
+    System.out.println("장바구니에서 삭제할 도서의 ID를 입력하세요: ");
+    String bookId = this.sc.nextLine();
+
+    int findNumId = this.cart.findBookById(bookId);
+
+    if (this.cart.isCartInBook(bookId) && findNumId >= 1) {
+      this.cart.removeCart(findNumId);
+      System.out.println("삭제했습니다");
+    } else {
+      System.out.println("해당 도서 ID는 업습니다. 확인 후 다시 시도해 주시기 바랍니다");
+    }
+  }
 
   /**
    * 영수증 표시하기
@@ -140,12 +173,101 @@ public class Welcome {
       }
     }
 
-    if (!printYn)
+    String name = this.customer.getName();
+    String phoneNumber = this.customer.getPhoneNumber();
+
+    if (!printYn) {
+      System.out.println("배송받을 고객명을 입력하세요: ");
+      name = this.sc.nextLine();
+
+      System.out.println("배송받을 고객의 연락처를 입력하세요: ");
+      phoneNumber = this.sc.next();
+    }
+
+    System.out.println("배송받을 고객의 배송지를 입력하세요: ");
+    String shippingAddress = this.sc.nextLine();
+
+    LocalDate localDateTime = LocalDate.now().plusDays(3L);
+    String shippingDate = localDateTime.format(DateTimeFormatter.ofPattern("uuuu/MM/dd"));
+
+    System.out.println("-------------------- 배송 받을 고객 정보 --------------------");
+    System.out.printf("""
+      고객명: %s               연락처: %s
+      배송지: %s               발송일: %s
+      """, name, phoneNumber, shippingAddress, shippingDate);
+    System.out.println("-------------------------------------------------------");
+  }
+
+  public void menuExit() {
+    System.out.println("이용해 주셔서 감사합니다");
+  }
+
+  public void menuAdmin() {
+    System.out.println("관리자 정보를 입력하세요");
+
+    System.out.println("아이디: ");
+    String id = this.sc.next();
+
+    System.out.println("비밀번호: ");
+    String password = this.sc.nextLine();
+
+    if (!this.manager.isMatch(id, password)) {
+      System.out.println("아이디나 비밀번호가 일치하지 않습니다. 확인해 주세요");
+    }
+
+    boolean addBook = true;
+    while (true) {
+      System.out.println("도서 정보를 추가하겠습니까? (Y | N) ");
+      String yn = this.sc.next();
+      this.sc.nextLine();
+
+      if (yn.equalsIgnoreCase("y")) {
+        break;
+      } else if (yn.equalsIgnoreCase("n")) {
+        addBook = false;
+        break;
+      } else {
+        System.out.println("Y / N 중에 하나만 입력해 주시기 바랍니다");
+      }
+    }
+
+    if (!addBook) {
+      System.out.println("이전 메뉴로 되돌아갑니다");
       return;
+    }
+
+    System.out.println("도서 ID: ");
+    String bookId = this.sc.nextLine();
+
+    System.out.println("도서명: ");
+    String bookName = this.sc.nextLine();
+
+    int price = this.in.integer("가격: ");
+
+    System.out.println("저자: ");
+    String author = this.sc.nextLine();
+
+    System.out.println("설명: ");
+    String description = this.sc.nextLine();
+
+    System.out.println("분야: ");
+    String category = this.sc.nextLine();
+
+    System.out.println("출판일: ");
+    String releaseDate = this.sc.nextLine();
+
+    this.addBook(new Book(bookName, price, bookId, author, description, category, releaseDate));
+
 
   }
 
-  public void menuExit() {}
+  public void addBook(Book book) {
+    Book[] newBooks = new Book[this.mBookCount + 1];
 
-  public void menuAdmin() {}
+    System.arraycopy(this.mBook, 0, newBooks, 0, this.mBook.length);
+    newBooks[this.mBookCount] = book;
+
+    this.mBook = newBooks;
+    this.mBookCount++;
+  }
 }

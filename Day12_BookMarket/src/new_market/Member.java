@@ -44,6 +44,6 @@ public class Member {
 
   @Override
   public String toString() {
-    return "이름: " + this.name + "   /   연락처: " + this.phoneNumber;
+    return "이름: " + this.name + " / 연락처: " + this.phoneNumber;
   }
 }

@@ -8,6 +8,12 @@ public class Manager extends Member {
     super(name, phoneNumber);
   }
 
+  public Manager(String name, String phoneNumber, String id, String password) {
+    super(name, phoneNumber);
+    this.id = id;
+    this.password = password;
+  }
+
   public String getId() {
     return id;
   }
@@ -22,6 +28,10 @@ public class Manager extends Member {
 
   public void setPassword(String password) {
     this.password = password;
+  }
+
+  public boolean isMatch(String id, String password) {
+    return this.id.equals(id) && this.password.equals(password);
   }
 
   @Override
