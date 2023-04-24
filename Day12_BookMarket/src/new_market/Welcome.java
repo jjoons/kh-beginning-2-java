@@ -10,7 +10,6 @@ import java.util.Random;
 import java.util.Scanner;
 
 public class Welcome {
-  // TODO 미완
   private final Controller controller = new Controller();
   private final Scanner sc = new Scanner(System.in);
   private final InputFromUser in = new InputFromUser(sc);
@@ -120,7 +119,6 @@ public class Welcome {
    * 바구니에 항목 추가하기
    */
   public void menuCartAddItem() {
-    // TODO
     this.controller.printBookList();
 
     System.out.println("장바구니에 추가할 도서의 ID를 입력하세요: ");
@@ -140,7 +138,6 @@ public class Welcome {
    * 장바구니의 항목 수량 줄이기
    */
   public void menuCartRemoveItemCount() {
-    // TODO
     this.cart.printCartList();
 
     System.out.println("수량을 줄일 도서의 ID를 입력해주세요");
