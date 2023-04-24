@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.InputMismatchException;
+import java.util.Random;
 import java.util.Scanner;
 
 public class Welcome {
@@ -16,6 +17,7 @@ public class Welcome {
   private final Cart cart = new Cart();
   private Customer customer = null;
   private Manager manager = new Manager("관리자1", "15880000", "admin", "admin");
+  private Random random = new Random();
 
   public Welcome() throws IOException {}
 
@@ -40,10 +42,10 @@ public class Welcome {
                 Welcome to Shopping Mall
                 Welcome to Book Market!
         *************************************************
-         1. 고객 정보 확인하기       4. 장바구니에 항목 추가하기
-         2. 장바구니 상품 목록 보기   5. 장바구니의 항목 수량 줄이기
-         3. 장바구니 비우기          6. 장바구니의 항목 삭제하기
-         7. 영수증 표시하기          8. 종료
+         1. 고객 정보 확인하기         4. 장바구니에 항목 추가하기
+         2. 장바구니 상품 목록 보기     5. 장바구니의 항목 수량 줄이기
+         3. 장바구니 비우기            6. 장바구니의 항목 삭제하기
+         7. 영수증 표시하기 (주문하기)  8. 종료
          9. 관리자 로그인
         *************************************************
         """);
@@ -51,7 +53,7 @@ public class Welcome {
       Integer sel = null;
       try {
         in.setThrowMessage("올바르지 않은 메뉴 선택으로 종료합니다.");
-        sel = in.integer(1, true, s -> s < 1 || s > 9);
+        sel = in.integer("메뉴 입력: ");
       } catch (InputMismatchException e) {
         System.out.println(e.getMessage());
         System.exit(1);
@@ -62,10 +64,7 @@ public class Welcome {
         case 2 -> this.menuCartItemList();
         case 3 -> this.menuCartClear();
         case 4 -> this.menuCartAddItem();
-        case 5 -> {
-          System.out.println("미완성");
-//          this.menuCartRemoveItemCount();
-        }
+        case 5 -> this.menuCartRemoveItemCount();
         case 6 -> this.menuCartRemoveItem();
         case 7 -> this.menuCartBill();
         case 8 -> {
@@ -74,7 +73,7 @@ public class Welcome {
         }
         case 9 -> this.menuAdmin();
         default -> {
-          System.out.println("올바르지 않은 메뉴 선택으로 종료합니다");
+          System.out.println("해당 메뉴는 없습니다");
         }
       }
     }
@@ -133,11 +132,8 @@ public class Welcome {
       return;
     }
 
-    if (this.cart.insertBook(findBook)) {
-      System.out.println("장바구니에 책을 넣었습니다");
-    } else {
-      System.out.println("장바구니에 책을 넣지 못 했습니다");
-    }
+    this.cart.insertBook(findBook);
+    System.out.println("장바구니에 책을 넣었습니다");
   }
 
   /**
@@ -148,7 +144,13 @@ public class Welcome {
     this.cart.printCartList();
 
     System.out.println("수량을 줄일 도서의 ID를 입력해주세요");
+    String bookId = this.sc.nextLine();
 
+    if (this.cart.decreaseItemCount(bookId)) {
+      System.out.println("수량을 줄였습니다");
+    } else {
+      System.out.println("수량이 1개이거나 없는 잘못된 도서의 ID를 입력했습니다.");
+    }
   }
 
   /**
@@ -174,11 +176,27 @@ public class Welcome {
    * 영수증 표시하기
    */
   public void menuCartBill() {
+    while (true) {
+      System.out.println("주문하시겠습니까? (Y | N): ");
+      String sel = this.sc.next();
+      this.sc.nextLine();
+
+      if (sel.equalsIgnoreCase("n")) {
+        System.out.println("주문을 취소했습니다");
+        return;
+      } else if (sel.equalsIgnoreCase("y")) {
+        break;
+      } else {
+        System.out.println("Y / N 중에 하나만 입력해 주시기 바랍니다");
+      }
+    }
+
     boolean printYn = false;
 
     while (true) {
       System.out.println("배송받을 분이 고객 정보와 같습니까? Y | N: ");
       String yn = this.sc.next();
+      this.sc.nextLine();
 
       if (yn.equalsIgnoreCase("y")) {
         printYn = true;
@@ -199,12 +217,13 @@ public class Welcome {
 
       System.out.println("배송받을 고객의 연락처를 입력하세요: ");
       phoneNumber = this.sc.next();
+      this.sc.nextLine();
     }
 
     System.out.println("배송받을 고객의 배송지를 입력하세요: ");
     String shippingAddress = this.sc.nextLine();
 
-    LocalDate localDateTime = LocalDate.now().plusDays(3L);
+    LocalDate localDateTime = LocalDate.now().plusDays((random.nextInt(2, 7) + 1));
     String shippingDate = localDateTime.format(DateTimeFormatter.ofPattern("uuuu/MM/dd"));
 
     System.out.printf("""
@@ -213,6 +232,8 @@ public class Welcome {
       배송지: %s               발송일: %s
       -------------------------------------------------------
       """, name, phoneNumber, shippingAddress, shippingDate);
+    this.cart.printCartList();
+    this.cart.deleteBook();
   }
 
   public void menuExit() {
@@ -224,12 +245,14 @@ public class Welcome {
 
     System.out.println("아이디: ");
     String id = this.sc.next();
+    this.sc.nextLine();
 
     System.out.println("비밀번호: ");
     String password = this.sc.nextLine();
 
     if (!this.manager.isMatch(id, password)) {
-      System.out.println("아이디나 비밀번호가 일치하지 않습니다. 확인해 주세요");
+      System.out.println("아이디 또는 비밀번호가 일치하지 않습니다. 확인해 주세요");
+      return;
     }
 
     boolean addBook = true;

@@ -2,12 +2,12 @@ package new_market;
 
 import java.io.*;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.StringTokenizer;
 
 public class Controller {
   public static final String DELIM = "|";
-  private Book[] books;
-  private int bookCount;
+  private ArrayList<Book> books = new ArrayList<>();
   private File file = new File("io/book.txt");
   //  private FileInputStream fis = null;
 //  private BufferedInputStream bis = null;
@@ -26,20 +26,21 @@ public class Controller {
     }
 
     this.fr = new FileReader(this.file);
-    this.fw = new FileWriter(this.file);
+    this.fw = new FileWriter(this.file, true);
 
     this.br = new BufferedReader(this.fr);
     this.bw = new BufferedWriter(this.fw);
 
     if (successCreateFile) {
-      this.books = new Book[]{
+      this.books.addAll(List.of(new Book[]{
         new Book("쉽게 배우는 JSP 웹 프로그래밍", 27000, "ISBN1234", "송미영", "단계별로 쇼핑몰을 구현하며 배우는 JSP 웹 프로그래밍",
           "IT전문서", "2018/10/08"),
         new Book("안드로이드 프로그래밍", 33000, "ISBN1235", "우재남", "실습 단계별 명쾌한 멘토링!", "IT전문서", "2022/01/22"),
         new Book("스크래치", 22000, "ISBN1236", "고광일", "컴퓨팅 사고력을 키우는 블록 코딩", "컴퓨터입문서", "2019/06/10"),
-      };
-      this.bookCount = 3;
+      }));
+
       this.save();
+      this.books.clear();
     }
 
     this.open();
@@ -47,12 +48,10 @@ public class Controller {
 
   public boolean open() throws IOException {
     ArrayList<Book> newBooks = new ArrayList<>();
-    int count = 0;
+    String a;
 
-    try {
-      String a;
-
-      while ((a = this.br.readLine()) != null) {
+    while ((a = this.br.readLine()) != null) {
+      try {
         StringTokenizer st = new StringTokenizer(a, "|");
 
         if (st.countTokens() != 7) {
@@ -70,15 +69,14 @@ public class Controller {
 
         Book newBook = new Book(bookName, price, bookId, author, description, category, releaseDate);
         newBooks.add(newBook);
-        count++;
+      } catch (NumberFormatException e) {
+        return false;
       }
-    } catch (IOException e) {
-    } catch (NumberFormatException e) {
-      return false;
     }
 
-    this.books = newBooks.toArray(new Book[0]);
-    this.bookCount = count;
+    for (Book book : newBooks) {
+      this.books.add(book);
+    }
 
     this.br.mark(0);
     this.br.reset();
@@ -87,6 +85,12 @@ public class Controller {
   }
 
   public boolean save() {
+    try {
+      new FileOutputStream(this.file).close();
+    } catch (IOException e) {
+      return false;
+    }
+
     StringBuffer sb = new StringBuffer();
 
     for (Book book : this.books) {
@@ -97,12 +101,19 @@ public class Controller {
 
       String saveDesc = book.getBookId() + DELIM + book.getName() + DELIM + book.getPrice() + DELIM
         + book.getAuthor() + DELIM + book.getDescription() + DELIM + book.getCategory() + DELIM + book.getReleaseDate();
-      sb.append(saveDesc);
+
+      try {
+        this.bw.write(saveDesc);
+        this.bw.newLine();
+      } catch (IOException e) {
+        throw new RuntimeException(e);
+      }
     }
 
     try {
-      this.bw.write(sb.toString());
+      this.bw.flush();
     } catch (IOException e) {
+      e.printStackTrace();
       return false;
     }
 
@@ -130,13 +141,8 @@ public class Controller {
   }
 
   public void addBook(Book book) {
-    Book[] newBooks = new Book[this.bookCount + 1];
-
-    System.arraycopy(this.books, 0, newBooks, 0, this.books.length);
-    newBooks[this.bookCount] = book;
-
-    this.books = newBooks;
-    this.bookCount++;
+    this.books.add(book);
+    this.save();
   }
 
   /**

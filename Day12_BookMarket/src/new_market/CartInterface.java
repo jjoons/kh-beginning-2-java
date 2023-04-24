@@ -13,7 +13,7 @@ public interface CartInterface {
   /**
    * 장바구니 항목 관리 클래스 CartItem에 도서 정보를 등록하는 메서드
    */
-  boolean insertBook(Book p);
+  void insertBook(Book p);
 
   /**
    * 장바구니 순번 numId의 항목을 삭제하는 메서드
