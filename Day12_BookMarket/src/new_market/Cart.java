@@ -10,17 +10,10 @@ public class Cart implements CartInterface {
   public Cart() {}
 
   @Override
-  public void printBookList(Book[] bookList) {
-    for (Book book : bookList) {
-      System.out.println(book);
-    }
-  }
-
-  @Override
-  public boolean isCartInBook(String id) {
+  public boolean isCartInBook(String bookId) {
     for (CartItem item : this.mCartItem) {
       Book book = item.getItem();
-      if (book.getBookId().equals(id)) {
+      if (book.getBookId().equals(bookId)) {
         return true;
       }
     }
@@ -29,10 +22,20 @@ public class Cart implements CartInterface {
   }
 
   @Override
-  public void insertBook(Book p) {
+  public boolean insertBook(Book book) {
     if (!this.isFull()) {
-      this.mCartItem[mCartCount++] = new CartItem(p, 1);
+      String bookId = book.getBookId();
+      if (this.isCartInBook(bookId)) {
+        CartItem cartItem = this.findCartItemByBookId(bookId);
+        cartItem.increase();
+      } else {
+        this.mCartItem[mCartCount++] = new CartItem(book, 1);
+      }
+
+      return true;
     }
+
+    return false;
   }
 
   @Override
@@ -59,9 +62,11 @@ public class Cart implements CartInterface {
     int totalPrice = 0;
 
     for (CartItem item : this.mCartItem) {
-      totalPrice += item.calcTotalPrice();
-      Book book = item.getItem();
-      System.out.printf("     %s     |     %d     |     %d", book.getBookId(), item.getCount(), item.calcTotalPrice());
+      if (item != null) {
+        totalPrice += item.calcTotalPrice();
+        Book book = item.getItem();
+        System.out.printf("     %s     |     %d     |     %d", book.getBookId(), item.getCount(), item.calcTotalPrice());
+      }
     }
 
     System.out.println("-----------------------------------");
@@ -69,7 +74,7 @@ public class Cart implements CartInterface {
     System.out.println("-----------------------------------");
   }
 
-  public int findBookById(String bookId) {
+  public int findBookByBookId(String bookId) {
     for (CartItem item : this.mCartItem) {
       Book book = item.getItem();
       if (book.getBookId().equals(bookId)) {
@@ -82,5 +87,15 @@ public class Cart implements CartInterface {
 
   public boolean isFull() {
     return mCartCount >= NUM_BOOK;
+  }
+
+  public CartItem findCartItemByBookId(String bookId) {
+    for (CartItem cartItem : this.mCartItem) {
+      if (cartItem.getItem().getBookId().equals(bookId)) {
+        return cartItem;
+      }
+    }
+
+    return null;
   }
 }

@@ -23,6 +23,14 @@ public class CartItem {
     this.count = count;
   }
 
+  public int increase() {
+    return ++this.count;
+  }
+
+  public int decrease() {
+    return --this.count;
+  }
+
   public Book getItem() {
     return this.book;
   }

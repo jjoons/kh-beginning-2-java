@@ -53,6 +53,7 @@ public class Manager extends Member {
 
   @Override
   public String toString() {
-    return String.format("이름: %s\t연락처: %s\n아이디: %s\t비밀번호: %s", this.getName(), this.getPhoneNumber(), this.id, this.password);
+    return String.format("이름: %s\t연락처: %s\n아이디: %s\t비밀번호: %s",
+      this.getName(), this.getPhoneNumber(), this.id, this.password);
   }
 }

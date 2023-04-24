@@ -1,5 +1,7 @@
 package new_market;
 
+import java.util.Objects;
+
 public class Book extends Item {
   private String bookId;
   private String author;
@@ -54,6 +56,19 @@ public class Book extends Item {
 
   public void setReleaseDate(String releaseDate) {
     this.releaseDate = releaseDate;
+  }
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) return true;
+    if (o == null || getClass() != o.getClass()) return false;
+    Book book = (Book) o;
+    return Objects.equals(bookId, book.bookId) && Objects.equals(author, book.author) && Objects.equals(description, book.description) && Objects.equals(category, book.category) && Objects.equals(releaseDate, book.releaseDate);
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(bookId, author, description, category, releaseDate);
   }
 
   @Override
