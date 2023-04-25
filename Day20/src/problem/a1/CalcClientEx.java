@@ -11,6 +11,7 @@ import java.util.Scanner;
 
 public class CalcClientEx {
   public static void main(String[] args) throws UnknownHostException, IOException {
+    // TODO
     Socket s = new Socket(CalcServerEx.HOSTNAME, CalcServerEx.PORT_NUMBER);
     BufferedReader br = new BufferedReader(new InputStreamReader(s.getInputStream()));
     BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(s.getOutputStream()));
